@@ -3,6 +3,13 @@ from fastapi.middleware.cors import CORSMiddleware
 import json
 
 app = FastAPI()
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello from FastAPI on Vercel!"}
 
 # Enable CORS
 app.add_middleware(
