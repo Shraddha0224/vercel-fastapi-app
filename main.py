@@ -4,24 +4,22 @@ import json
 
 app = FastAPI()
 
-# Enable CORS to allow requests from any origin
+# CORS to allow any frontend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"]
 )
 
-# Load data from JSON once on startup
+# Load JSON data
 with open("q-vercel-python.json", "r") as f:
     data = json.load(f)
 
-# Health check or welcome route (optional)
 @app.get("/")
-def read_root():
+def root():
     return {"message": "Hello from FastAPI on Vercel"}
 
-# Main API route
 @app.get("/api")
 def get_marks(name: list[str] = []):
     name_to_marks = {student["name"]: student["marks"] for student in data}
