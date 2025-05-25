@@ -23,7 +23,7 @@ app.add_middleware(
 with open("q-vercel-python.json", "r") as f:
     data = json.load(f)
 
-@app.get("/")
+@app.get("/api")
 def get_marks(name: list[str] = []):
     name_to_marks = {student["name"]: student["marks"] for student in data}
     result = [name_to_marks.get(n, None) for n in name]
